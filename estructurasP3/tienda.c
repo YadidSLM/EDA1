@@ -10,57 +10,47 @@ void llenarCarrito(){
     /*Elige y escribe los productos a comprar*/
     struct producto product[10];
     char tipos[5][20] = {"Salud", "Bebidas", "Alimentos", "Electrodomesticos", "Limpieza"};
-    int option = 0, numProd = 0;
-
-    printf("\n\n1)Nuevo producto (10 max)\n2)Añadir otro producto existenete.\n3)Volver\n");
-    scanf("%i", &option);
-
-    if(option == 1){
-        product[numProd].cantidad = 1;
-        printf("\n\nTipo de producto:");
-        printf("\na)Salud\nb)Bebidas\nc)Alimentos\nd)Electrodomesticos\ne)Limpieza\n");
-        scanf("%c", product[numProd].tipo);
-        if(product[numProd].tipo == 'a' || product[numProd].tipo == 'd')
-        {
-            product[numProd].precio = 387;
-            printf("\nIngresa el nombre del producto: ");
-            fgets(product[numProd].nombre, 50, stdin);
-        }
-        else if(product[numProd].tipo == 'b' || product[numProd].tipo == 'c')
-        {
-            product[numProd].precio = 70.5;
-            printf("\nIngresa el nombre del producto: ");
-            fgets(product[numProd].nombre, 50, stdin);
-        }
-        else if(product[numProd].tipo == 'e')
-        {
-            product[numProd].precio = 50;
-            printf("\nIngresa el nombre del producto: ");
-            fgets(product[numProd].nombre, 50, stdin);
-        }
-        else{
-            printf("\nCaracter no valido.\n");
-        }
-        
-    } else if (option == 2){
-        printf("\nEilge el numero del producto a añadir cantidad: ");
-        scanf("%i", &numProd);
-        product[numProd].cantidad++;
-    } else if(option == 3){
-        printf("\nRegresando a menu principal.\n");
+    int numProd = 0;
+    product[numProd].cantidad = 1;
+    printf("\n\nTipo de producto:");
+    printf("\na)Salud\nb)Bebidas\nc)Alimentos\nd)Electrodomesticos\ne)Limpieza\n");
+    scanf("%c", &product[numProd].tipo);
+    if(product[numProd].tipo == 'a' || product[numProd].tipo == 'd')
+    {
+        product[numProd].precio = 387;
+        printf("\nIngresa el nombre del producto: ");
+        fgets(product[numProd].nombre, 50, stdin);
     }
-
-
+    else if(product[numProd].tipo == 'b' || product[numProd].tipo == 'c')
+    {
+        product[numProd].precio = 70.5;
+        printf("\nIngresa el nombre del producto: ");
+        fgets(product[numProd].nombre, 50, stdin);
+    }
+    else if(product[numProd].tipo == 'e')
+    {
+        product[numProd].precio = 50;
+        printf("\nIngresa el nombre del producto: ");
+        fgets(product[numProd].nombre, 50, stdin);
+    }
 }
 void listarProductos(){
-    /*Lista los productos a comprar*/
-    printf("Listar productos");
+    struct producto product[10];
+    printf("Sus productos son:\n\n");
+    for(int x=0;x<10;x++){
+        printf("%s\n", product[x].nombre);
+    }
 }
 void devolverProducto(){
     printf("Devolver producto");
+    
 }
 void pagarCarrito(){
-    printf("Pagar carrito");
+    struct producto product[10];
+    printf("En total es:");
+    int total = 0;
+    for(int i = 0; i < 10; i++)
+        total = product[i].precio + product[i++].precio;
 }
 
 int main()
