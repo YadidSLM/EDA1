@@ -1,49 +1,60 @@
 #include <stdio.h>
+#include <string.h>
 struct producto{
     float precio;
     char nombre[50];
-    char tipo[5];
-    int cantidad;
+    char tipo[20];
 };
 
 void llenarCarrito(){
     /*Elige y escribe los productos a comprar*/
-    struct producto product[10];
-    char tipos[5][20] = {"Salud", "Bebidas", "Alimentos", "Electrodomesticos", "Limpieza"};
-    int numProd = 0;
-    product[numProd].cantidad = 1;
-    printf("\n\nTipo de producto:");
-    printf("\na)Salud\nb)Bebidas\nc)Alimentos\nd)Electrodomesticos\ne)Limpieza\n");
-    scanf("%c", &product[numProd].tipo);
-    if(product[numProd].tipo == 'a' || product[numProd].tipo == 'd')
-    {
-        product[numProd].precio = 387;
-        printf("\nIngresa el nombre del producto: ");
-        fgets(product[numProd].nombre, 50, stdin);
-    }
-    else if(product[numProd].tipo == 'b' || product[numProd].tipo == 'c')
-    {
-        product[numProd].precio = 70.5;
-        printf("\nIngresa el nombre del producto: ");
-        fgets(product[numProd].nombre, 50, stdin);
-    }
-    else if(product[numProd].tipo == 'e')
-    {
-        product[numProd].precio = 50;
-        printf("\nIngresa el nombre del producto: ");
-        fgets(product[numProd].nombre, 50, stdin);
-    }
+    struct producto product1, product2, product3, product4, product5;
+    for(int i = 0; i < 6; i++)
+        strcpy(product1.tipo[i], "Salud");
+    for(int i = 0; i < 9; i++)
+        strcpy(product1.nombre[i], "Aspirina");
+    product1.precio = 50.3;
+
+    for(int i = 0; i < 7; i++)
+        strcpy(product2.tipo[i], "Bebida");
+    for(int i = 0; i < 6; i++)
+        strcpy(product2.nombre[i], "Fanta");
+    product2.precio = 18;
+
+    for(int i = 0; i < 9; i++)
+        strcpy(product3.tipo[i], "Alimento");
+    for(int i = 0; i < 5; i++)
+        strcpy(product3.nombre[i], "Taco");
+    product3.precio = 15;
+    
+    for(int i = 0; i < 17; i++)
+        strcpy(product4.tipo[i], "Electrodomestico");
+    for(int i = 0; i < 8; i++)
+        strcpy(product4.nombre[i], "Plancha");
+    product4.precio = 129.9;
+
+    for(int i = 0; i < 9; i++)
+        strcpy(product5.tipo[i], "Limpieza");
+    for(int i = 0; i < 5; i++)
+        strcpy(product5.nombre[i], "Mopa");
+    product5.precio = 129.9;
+
+    printf("Sus productos son:\n\n");
+    printf("%s\n", product1.nombre);
+    printf("%s\n", product2.nombre);
+    printf("%s\n", product3.nombre);
+    printf("%s\n", product4.nombre);
+    printf("%s\n", product5.nombre);
+
+
 }
 void listarProductos(){
     struct producto product[10];
-    printf("Sus productos son:\n\n");
-    for(int x=0;x<10;x++){
-        printf("%s\n", product[x].nombre);
-    }
+    
 }
 void devolverProducto(){
     printf("Devolver producto");
-    
+
 }
 void pagarCarrito(){
     struct producto product[10];
@@ -66,6 +77,7 @@ int main()
         {
         case 1:
             llenarCarrito();
+            
             break;
         case 2:
             listarProductos();
