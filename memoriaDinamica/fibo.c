@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include <windows.h>
-
 void fibonacci (unsigned long long int *a, int n)
 {
   *a = 1;
@@ -17,9 +16,13 @@ void fibonacci (unsigned long long int *a, int n)
 }
 int main(void)
 {
-    //Inicio  
+    //Inicio 
+    /***************/ 
     struct _FILETIME begin2, creation_time, kernel_time, exit_time;
     GetProcessTimes(GetCurrentProcess(), &creation_time, &exit_time, &kernel_time, &begin2);
+    /***************/
+    struct timespec begin;
+    clock_gettime(CLOCK_REALTIME, &begin);
 
     int elementos;
     printf("\n\nFibonacci\n\n");
@@ -29,7 +32,8 @@ int main(void)
     //Por referencia
     fibonacci(apFib, elementos);
     printf("\nValor del elemento ingresado: %llu\n", fib[elementos - 1]);
-
+    //End
+    /*******************/
     struct _FILETIME end2;
     GetProcessTimes(GetCurrentProcess(), &creation_time, &exit_time, &kernel_time, &end2);
     //Fin
@@ -41,9 +45,15 @@ int main(void)
     ulEnd2.LowPart = end2.dwLowDateTime;
     ulEnd2.HighPart = end2.dwHighDateTime;
 
-    double time_spent2 = (ulEnd2.QuadPart - ulBegin2.QuadPart);
+    double time_spent2 = (ulEnd2.QuadPart - ulBegin2.QuadPart)/10000000000.0;
+    /**********************/
 
-    printf("\n\nEl tiempo que tardo la ejecucion en CPU fue de: %lf\n", time_spent2);
+    struct timespec end;
+    clock_gettime(CLOCK_REALTIME, &end);
+    double time_spent = (end.tv_sec - begin.tv_sec) + (end.tv_nsec - begin.tv_nsec)/1000000000.0;
+
+    printf("\n\nEl tiempo que tardo la ejecucion fue de: %lf\n", time_spent);
+    printf("\n\nEl tiempo que tardo la ejecucion en CPU fue de: %llf\n", time_spent2);
 
     return 0;
 }
