@@ -2,15 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <windows.h>
 
-long long current_timestamp()
-{
-    struct timespec te;
-    clock_gettime(CLOCK_REALTIME, &te);
-    return te.tv_nsec;
-}
-
-//Por referencia
 void fibonacci (unsigned long long int *a, int n)
 {
   *a = 1;
@@ -22,13 +15,11 @@ void fibonacci (unsigned long long int *a, int n)
     printf("%llu, ", *(a + i));
   }
 }
-
-
-
 int main(void)
 {
-    
-    long long begin = current_timestamp();
+    //Inicio  
+    struct _FILETIME begin2, creation_time, kernel_time, exit_time;
+    GetProcessTimes(GetCurrentProcess(), &creation_time, &exit_time, &kernel_time, &begin2);
 
     int elementos;
     printf("\n\nFibonacci\n\n");
@@ -39,9 +30,20 @@ int main(void)
     fibonacci(apFib, elementos);
     printf("\nValor del elemento ingresado: %llu\n", fib[elementos - 1]);
 
-    long long end = current_timestamp();
-    double timeProceso = (end - begin) / 1000000000.0; // Convertir de nanosegundos a segundos
-    printf("Tiempo que tarda la ejecucion: %lf\n", timeProceso);
+    struct _FILETIME end2;
+    GetProcessTimes(GetCurrentProcess(), &creation_time, &exit_time, &kernel_time, &end2);
+    //Fin
+    ULARGE_INTEGER ulBegin2;
+    ulBegin2.LowPart = begin2.dwLowDateTime;
+    ulBegin2.HighPart = begin2.dwHighDateTime;
+
+    ULARGE_INTEGER ulEnd2;
+    ulEnd2.LowPart = end2.dwLowDateTime;
+    ulEnd2.HighPart = end2.dwHighDateTime;
+
+    double time_spent2 = (ulEnd2.QuadPart - ulBegin2.QuadPart);
+
+    printf("\n\nEl tiempo que tardo la ejecucion en CPU fue de: %lf\n", time_spent2);
 
     return 0;
 }
