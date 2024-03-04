@@ -1,3 +1,6 @@
+/*Equipo: Los algoritmólogos EDA 1
+  Almacenamiento en tiempo de ejecución.
+*/
 #define _POSIX_C_SOURCE 199309L
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,27 +19,43 @@ void fibonacci (unsigned long long int *a, int n)
 }
 int main(void)
 {
-    //Inicio 
-    /***************/ 
-    struct _FILETIME begin2, creation_time, kernel_time, exit_time;
-    GetProcessTimes(GetCurrentProcess(), &creation_time, &exit_time, &kernel_time, &begin2);
-    /***************/
-    struct timespec begin;
-    clock_gettime(CLOCK_REALTIME, &begin);
-
+    /**************Programa fibonacci*******************/
     int elementos;
     printf("\n\nFibonacci\n\n");
     printf("Ingresa el numero del elemento de la serie de fibonacci a mostrar: ");
     scanf("%i", &elementos);
+
+    //Forma 1
+    clock_t ini, fin;
+    double tiempo;
+    ini = clock();
     unsigned long long int fib[elementos], *apFib = &fib[0];
+
+    //Inicio 
+    //Forma 3
+    struct _FILETIME begin2, creation_time, kernel_time, exit_time;
+    GetProcessTimes(GetCurrentProcess(), &creation_time, &exit_time, &kernel_time, &begin2);
+
+    //Forma 2
+    struct timespec begin;
+    clock_gettime(CLOCK_REALTIME, &begin);
+
     //Por referencia
     fibonacci(apFib, elementos);
     printf("\nValor del elemento ingresado: %llu\n", fib[elementos - 1]);
-    //End
-    /*******************/
+    /**************Programa fibonacci*******************/
+
+    //Fin
+    //Forma 1
+    fin = clock();
+    tiempo = (double)(fin - ini) / CLOCKS_PER_SEC;
+    printf("\n\nTiempo de ejecucion: %fs\n", tiempo);
+
+    //Forma 2
     struct _FILETIME end2;
     GetProcessTimes(GetCurrentProcess(), &creation_time, &exit_time, &kernel_time, &end2);
-    //Fin
+    
+    //Forma 3
     ULARGE_INTEGER ulBegin2;
     ulBegin2.LowPart = begin2.dwLowDateTime;
     ulBegin2.HighPart = begin2.dwHighDateTime;
