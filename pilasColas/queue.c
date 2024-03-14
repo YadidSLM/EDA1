@@ -11,7 +11,9 @@ struct queue{
 struct queue* createCola(unsigned capacidad)
 {
     struct queue* cola = (struct queue*) malloc(sizeof(struct queue));
-    cola->head = cola->size = cola->tail = 0;
+    cola->head = 0;
+    cola->size = 0;
+    cola->tail = 0;
     cola->capacity = capacidad;
     cola->array = (int*) malloc(cola->capacity * sizeof(int));
     return cola;
@@ -55,7 +57,7 @@ int dequeue (struct queue* cola)
 int peek(struct queue* cola)
 {
     if(isEmpty(cola))
-        return INT_MIN;
+        printf("No se puede mostrar head porque no hay nada.");
     return cola->array[cola->head];
 }
 
@@ -63,7 +65,7 @@ int main ()
 {
     struct queue* clientes = createCola(20);
     int clienteAtendido;
-    for(int i = 1; i < 20; i++){
+    for(int i = 1; i <= 20; i++){
         enqueue(clientes, i);
     }
 
@@ -73,7 +75,7 @@ int main ()
     printf("\nCLiente en espera y es proximo a ser atendido: %i", peek(clientes));
     for(int seg = 1; seg <= 6; seg++)
     {
-        usleep(seg);
+        sleep(seg);
         printf("\nSegundo %i\n", seg);
     }
 
@@ -82,10 +84,10 @@ int main ()
     printf("\nCLiente en espera y es proximo a ser atendido: %i", peek(clientes));
     for(int seg = 1; seg <= 10; seg++)
     {
-        usleep(seg);
+        sleep(seg);
         printf("\nSegundo %i\n", seg);
     }
-    for(int i = 1; i < 18; i++){
+    for(int i = 1; i < 9; i++){
         clienteAtendido = dequeue(clientes);
         printf("\nCliente atendido: %i", clienteAtendido);
         printf("\nCLiente en espera y es proximo a ser atendido: %i", peek(clientes));
