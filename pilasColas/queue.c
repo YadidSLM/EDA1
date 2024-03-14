@@ -32,24 +32,23 @@ void enqueue(struct queue* cola, int clienteNum)
     if(isFull(cola))
         printf("\nEsta llena la cola no se pueden insertar mas: %i\n", isFull(cola));
     else{
-        cola->tail++;
+        cola->tail = (cola->tail + 1) % cola->capacity;
         cola->array[cola->tail] = clienteNum;
-        cola->size++;
+        cola->size = cola->size + 1;
         printf("\nCliente en atencion: %i\n", cola->array[cola->tail]);
     }
 }
 
 int dequeue (struct queue* cola)
 {
-    int cli = 0;
-    if(isEmpty(cola))
+    if(isEmpty(cola)){
         printf("\nLa cola esta vacia, no se pueden quitar elementos que no hay.\n");
-    else{
-        cli = cola->array[cola->head];
-        cola->head = (cola->head + 1) % cola->capacity;
-        cola->size = cola->size - 1;
-        return cli;
+        return INT_MIN;
     }
+    int cli = cola->array[cola->head];
+    cola->head++;
+    cola->size = cola->size - 1;
+    return cli;
 }
 
 int peek(struct queue* cola)
@@ -65,7 +64,7 @@ int main ()
     enqueue(clientes, 2);
     enqueue(clientes, 4);
     clienteAtendido = dequeue(clientes);
-    printf("\nCliente atendido: %i",clienteAtendido);
+    printf("\nCliente atendido: %i", clienteAtendido);
     printf("\nCLiente a ser atendido: %i", peek(clientes));
     printf("\nSize: %i, Tail: %i, Head: %i, Elemento en head: %i\n", clientes->size, clientes->tail, clientes->head, clientes->array[clientes->head]);
 
