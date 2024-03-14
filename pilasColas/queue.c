@@ -7,9 +7,9 @@ struct queue{
     int *array;
 };
 
-struct queue* createCola(int capacidad)
+struct queue* createCola(unsigned capacidad)
 {
-    struct queue* cola = (int*) malloc(capacidad * sizeof(int));
+    struct queue* cola = (struct queue*) malloc(sizeof(struct queue));
     cola->head = cola->size = cola->tail = 0;
     cola->capacity = capacidad;
     cola->array = (int*) malloc(cola->capacity * sizeof(int));
@@ -29,20 +29,20 @@ int isEmpty(struct queue* queue)
 
 void enqueue(struct queue* cola, int clienteNum)
 {
-    if(isFull)
-        printf("\nEsta llena la cola no se pueden insertar mas\n");
+    if(isFull(cola))
+        printf("\nEsta llena la cola no se pueden insertar mas: %i\n", isFull(cola));
     else{
         cola->tail++;
         cola->array[cola->tail] = clienteNum;
         cola->size++;
-        printf("\n%i Atendiendo cliente\n");
+        printf("\nCliente en atencion: %i\n", cola->array[cola->tail]);
     }
 }
 
 int dequeue (struct queue* cola)
 {
     int clienteAtendido;
-    if(isEmpty)
+    if(isEmpty(cola))
         printf("\nLa cola esta vacia, no se pueden quitar elementos que no hay.\n");
     else{
         clienteAtendido = cola->array[cola->head];
@@ -52,13 +52,15 @@ int dequeue (struct queue* cola)
     return clienteAtendido;
 }
 
-int peek()
+int peek(struct queue* cola)
 {
-    
+    return cola->array[cola->head];
 }
 
 int main ()
 {
-    struct queue* clientes = crearCola(20);
+    struct queue* clientes = createCola(20);
+    enqueue(clientes, 5);
+
     return 0;
 }
