@@ -48,12 +48,13 @@ int dequeue (struct queue* cola)
     int cli = cola->array[cola->head];
     cola->head++;
     cola->size = cola->size - 1;
-    return cli;
+    return cola->array[cola->head++];
 }
 
 int peek(struct queue* cola)
 {
-    return cola->array[cola->head];
+    if(!isEmpty(cola))
+        return cola->array[cola->head];
 }
 
 int main ()
@@ -63,6 +64,10 @@ int main ()
     enqueue(clientes, 5);
     enqueue(clientes, 2);
     enqueue(clientes, 4);
+    clienteAtendido = dequeue(clientes);
+    printf("\nCliente atendido: %i", clienteAtendido);
+    printf("\nCLiente a ser atendido: %i", peek(clientes));
+
     clienteAtendido = dequeue(clientes);
     printf("\nCliente atendido: %i", clienteAtendido);
     printf("\nCLiente a ser atendido: %i", peek(clientes));
