@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 struct queue{
     int head, tail, size;
@@ -53,24 +54,43 @@ int dequeue (struct queue* cola)
 
 int peek(struct queue* cola)
 {
-    if(!isEmpty(cola))
-        return cola->array[cola->head];
+    if(isEmpty(cola))
+        return INT_MIN;
+    return cola->array[cola->head];
 }
 
 int main ()
 {
     struct queue* clientes = createCola(20);
     int clienteAtendido;
-    enqueue(clientes, 5);
-    enqueue(clientes, 2);
-    enqueue(clientes, 4);
+    for(int i = 1; i < 20; i++){
+        enqueue(clientes, i);
+    }
+
+    //Cliente 1 en atneción por 6 segundos
     clienteAtendido = dequeue(clientes);
     printf("\nCliente atendido: %i", clienteAtendido);
-    printf("\nCLiente a ser atendido: %i", peek(clientes));
+    printf("\nCLiente en espera y es proximo a ser atendido: %i", peek(clientes));
+    for(int seg = 1; seg <= 6; seg++)
+    {
+        usleep(seg);
+        printf("\nSegundo %i\n", seg);
+    }
 
     clienteAtendido = dequeue(clientes);
     printf("\nCliente atendido: %i", clienteAtendido);
-    printf("\nCLiente a ser atendido: %i", peek(clientes));
+    printf("\nCLiente en espera y es proximo a ser atendido: %i", peek(clientes));
+    for(int seg = 1; seg <= 10; seg++)
+    {
+        usleep(seg);
+        printf("\nSegundo %i\n", seg);
+    }
+    for(int i = 1; i < 18; i++){
+        clienteAtendido = dequeue(clientes);
+        printf("\nCliente atendido: %i", clienteAtendido);
+        printf("\nCLiente en espera y es proximo a ser atendido: %i", peek(clientes));
+    }
+
     printf("\nSize: %i, Tail: %i, Head: %i, Elemento en head: %i\n", clientes->size, clientes->tail, clientes->head, clientes->array[clientes->head]);
 
     return 0;
