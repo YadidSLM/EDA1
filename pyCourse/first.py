@@ -1,5 +1,14 @@
 
-
+#Esto es una cadena que se puede asignar a una variable
+""" HOla
+ que onda
+"""
+'''
+YOooo
+How you doing?
+'''
+"Solo en lína"
+'Es lo mismo que la linea de arriba solo que con comillas simples'
 #La recomendación de python para nombrar variables es con snake case
 num = 5 + 2
 num += 2 #Es lo mismo que num = num + 2
