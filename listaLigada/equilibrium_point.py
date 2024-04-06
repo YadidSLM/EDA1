@@ -40,26 +40,26 @@ class Lista:
         prev_node = self.head
         sumaA = current_node.data
         sumaP = 0
-
+        auxA = index
         equilibrium_index = index - 1
-        print(f'\nEquilibrium index index: {equilibrium_index}')
-        auxP_index = equilibrium_index - 1
-        auxA_index = index
-        print(f'\naux index: {auxP_index}')
+        auxP = equilibrium_index - 1
+        
+        print(f'\naux index: A: {auxA}, P: {auxP}')
+
         while (sumaA != sumaP):
-            print(f"First while iterating, aux posterior: {auxP_index}")
-            print(auxP_index, equilibrium_index, sumaA, sumaP)
-            while(auxP_index >= 0):
+
+            print(equilibrium_index)
+            while(auxP >= 0):
 
                 sumaP += current_node.data
                 current_node = current_node.next
                 print(f'Suma: {sumaP}')
-                auxP_index -= 1
+                auxP -= 1
             
-            while auxA_index < equilibrium_index:
+            while auxA < equilibrium_index:
                 sumaA += prev_node.data
                 prev_node = prev_node.next
-                auxA_index += 1
+                auxA += 1
             
             #equilibrium_index -= 1
             if sumaA == sumaP:
@@ -67,7 +67,7 @@ class Lista:
                 #LLega al nodo cuyo índice es el punto de equilbrio
                 for a in range(equilibrium_index):
                     current_node = current_node.next
-                print(auxP_index, equilibrium_index, sumaA, sumaP)
+                print(auxP, equilibrium_index, sumaA, sumaP)
                 return equilibrium_index
             elif equilibrium_index == 1:
                 #There is no equilibrium point
