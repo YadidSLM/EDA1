@@ -49,17 +49,17 @@ class Lista:
         while (sumaA != sumaP):
 
             print(equilibrium_index)
-            while(auxP >= 0):
+            if equilibrium_index < index - 1:
+                while auxA > equilibrium_index:
+                    sumaA += prev_node.data
+                    prev_node = prev_node.next
+                    auxA += 1
+            while auxP >= 0:
 
                 sumaP += current_node.data
                 current_node = current_node.next
                 print(f'Suma: {sumaP}')
                 auxP -= 1
-            
-            while auxA < equilibrium_index:
-                sumaA += prev_node.data
-                prev_node = prev_node.next
-                auxA += 1
             
             #equilibrium_index -= 1
             if sumaA == sumaP:
