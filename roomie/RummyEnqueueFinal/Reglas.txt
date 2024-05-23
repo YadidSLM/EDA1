@@ -1,0 +1,42 @@
+Reglas del Rummi:
+
+	Turnos:
+		Se revolveran las cartas y se repartira una a cada jugador, los turnos se asignaran a cada jugador a partir de la carta mas alta
+
+
+	Combinaciones en el Rummi:
+
+		En el Rummi hay dos combinaciones posibles:
+
+
+	Tercias o Cuartas: son varias fichas con el mismo numero pero distinto color. Siempre debe haber como minimo 3 fichas juntas.
+
+		Corrida: es una escalera de numeros consecutivos del mismo color y como minimo 3 fichas.
+
+
+	Juego:
+
+	Cada jugador debera coger 14 fichas
+
+	Empieza el juego el jugador que pueda poner 30 puntos (como minimo) encima de la mesa.
+
+	Cada ficha vale tantos puntos como el numero que indica.
+
+	En el caso de que alguien no pueda poner 30 puntos, debera coger una ficha cuando sea su turno y esperar a tener los 30 puntos para salir.
+
+	Una vez ya has empezado con tus 30 puntos, cuando te toque tirar podras anadir tantas fichas como quieras en la partida que ya hay encima de la mesa.
+
+	Siempre deberas tener en cuenta que no puedes dejar menos de tres fichas juntas y que no te puedes quedar ninguna de las fichas que hay en la partida ya colocada.
+
+	Cuando sea tu turno podras hacer varios movimientos:
+
+		Coger ficha: si no puedes poner ninguna ficha deberas coger una y perderas tu turno.
+
+		Cambiar o utilizar: en el caso de que haya tres fichas juntas, puedes anadir una en un extremo.
+
+		Sustituir: en el caso de los grupos de tres fichas, podras coger un numero de un color y en su lugar poner otro color.
+
+
+	El comodin puede completar cualquier tercia o corrida, pero es de un solo uso y no puede volver al mazo de ningun jugador una vez este fue empleado, se puede sustituir en la mesa, pero sera eliminado posteriormente
+
+	Gana el primer jugador en quedarse sin cartas en su mazo
