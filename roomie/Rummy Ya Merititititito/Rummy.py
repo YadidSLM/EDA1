@@ -1259,13 +1259,13 @@ def juego():
     crear_cartas()
     texto_x_tiempo("Repartiendo cartas...", tiempo_espera)
     ordenar_pozo()
-    numero_de_partida()
-    salvar_partida()
+    #numero_de_partida()
+    #salvar_partida()
     texto_x_tiempo(f"Esta es la partida número {clave}...", tiempo_espera)
     input("Presiona Enter para continuar...")
     c_mazo(n_jugadores)
     r_cartas(n_jugadores)
-    salvar_partida()
+    #salvar_partida()
 
     mostrar_tablero()
 
