@@ -1,4 +1,3 @@
-# #https://pythontutor.com/render.html#mode=display
 import random
 def cocktail_sort_recursivo(arr, start, tam):
     
