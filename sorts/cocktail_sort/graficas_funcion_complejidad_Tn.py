@@ -3,6 +3,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import random
 import numpy as np
 
+#Para medir las iteraciones en ambos algoritmos de ordenamiento se utiliza i_times y n_times
 i_times = 0
 def cocktailSort(arr):
     global i_times
@@ -64,18 +65,26 @@ for num in eje_x:
 
 # Funciones Big - O
 x = range(1,TAM,1)
-y = [_*_ for _ in x]
+y = [10*_ for _ in x]
+y_cuadrada = [i*2 for i in x]
+y_nlogn = x * np.log(x)
+y_logn = np.log(x)
 
 
 fig, ax = plt.subplots(facecolor = 'w', edgecolor = 'k')
-ax.plot(eje_x, eje_y, marker = 'o', color = 'g', linestyle = 'None')
+#Funciones
+ax.plot(eje_x, eje_y, marker = 'o', color = 'g', linestyle = '-')
 ax.plot(eje_x, eje_y2, marker = 'o', color = 'b', linestyle = 'None')
-ax.plot(x, y, color = 'r')
+ax.plot(eje_x, y_cuadrada, color = 'r')
+ax.plot(eje_x, y_nlogn, color = 'b')
+ax.plot(eje_x, y_logn, color = 'y')
 
 ax.set_xlabel('x')
 ax.set_ylabel('y')
+#Escala logarítmica
+ax.set_yscale('log')
 ax.grid(True)
-ax.legend(['Cocktail Sort Recursivo', 'Cocktail Sort', 'O(?)'])
+ax.legend(['Cocktail Sort Recursivo', 'Cocktail Sort', 'O(x^2)'])
 
 plt.title('Cocktail sort recursivo y no recursivo')
 plt.show()
