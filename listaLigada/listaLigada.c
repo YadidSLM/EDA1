@@ -43,6 +43,6 @@ int main(){
     insertarInicio(2);
     insertarInicio(3);
     insertarInicio(4);
-    //mostrarLista();
+    mostrarLista();
     return 0;
 }
